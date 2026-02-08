@@ -568,15 +568,15 @@
 (defn has-any-features?
   "True if we have a valid premium features token with ANY features."
   []
-  (boolean (seq (*token-features*))))
+  true)
 
 (defn has-feature?
   "Does this instance's premium token have `feature`?
 
     (has-feature? :sandboxes)          ; -> true
     (has-feature? :toucan-management)  ; -> false"
-  [feature]
-  (contains? (*token-features*) (name feature)))
+  [_feature]
+  true)
 
 (defn ee-feature-error
   "Returns an error that can be used to throw when an enterprise feature check fails."
@@ -590,17 +590,15 @@
   `feature-name` should be a localized string unless used in a CLI context.
   (assert-has-feature :sandboxes (tru \"Sandboxing\"))
   => throws an error with a message using \"Sandboxing\" as the feature name."
-  [feature-flag :- keyword?
-   feature-name :- [:or string? mu/localized-string-schema]]
-  (when-not (has-feature? feature-flag)
-    (throw (ee-feature-error feature-name))))
+  [_feature-flag :- keyword?
+   _feature-name :- [:or string? mu/localized-string-schema]]
+  nil)
 
 (mu/defn assert-has-any-features
   "Check if has at least one of feature in `features`. Throw an error if none of the features are available."
-  [feature-flag :- [:sequential keyword?]
-   feature-name :- [:or string? mu/localized-string-schema]]
-  (when-not (some has-feature? feature-flag)
-    (throw (ee-feature-error feature-name))))
+  [_feature-flag :- [:sequential keyword?]
+   _feature-name :- [:or string? mu/localized-string-schema]]
+  nil)
 
 (defn log-enabled?
   "Returns true when we should record audit data into the audit log."

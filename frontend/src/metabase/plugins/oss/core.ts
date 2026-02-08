@@ -142,7 +142,7 @@ export const PLUGIN_REDUCERS: {
 } = getDefaultReducers();
 
 const getDefaultIsEeBuild = () => ({
-  isEEBuild: () => false,
+  isEEBuild: () => true,
 });
 
 export const PLUGIN_IS_EE_BUILD = getDefaultIsEeBuild();

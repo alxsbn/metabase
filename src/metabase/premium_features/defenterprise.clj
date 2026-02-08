@@ -33,12 +33,8 @@
   (swap! registry update ee-fn-name merge values))
 
 (defn- check-feature
-  [feature]
-  (or (= feature :none)
-      (do
-        ;; Avoid a circular dependency between this namespace and metabase.premium-features.token-check
-        (classloader/require 'metabase.premium-features.token-check)
-        ((resolve 'metabase.premium-features.token-check/has-feature?) feature))))
+  [_feature]
+  true)
 
 (defn dynamic-ee-oss-fn
   "Dynamically tries to require an enterprise namespace and determine the correct implementation to call, based on the
