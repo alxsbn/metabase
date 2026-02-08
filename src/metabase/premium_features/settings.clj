@@ -74,10 +74,8 @@
   "Set of defined premium feature keywords."
   (atom #{}))
 
-(defn- default-premium-feature-getter [feature]
-  (fn []
-    (and config/ee-available?
-         (has-feature? feature))))
+(defn- default-premium-feature-getter [_feature]
+  (fn [] true))
 
 (defmacro define-premium-feature
   "Convenience for generating a [[metabase.settings.models.setting/defsetting]] form for a premium token feature. (The Settings
