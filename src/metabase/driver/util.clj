@@ -574,25 +574,8 @@
 
 (def official-drivers
   "The set of all official drivers"
-  #{"athena"
-    "bigquery-cloud-sdk"
-    "clickhouse"
-    "databricks"
-    "druid"
-    "druid-jdbc"
-    "h2"
-    "mongo"
-    "mysql"
-    "oracle"
-    "postgres"
-    "presto-jdbc"
-    "redshift"
-    "snowflake"
-    "sparksql"
-    "sqlite"
-    "sqlserver"
-    "starburst"
-    "vertica"})
+  #{"databricks"
+    "postgres"})
 
 (defn driver-source
   "Return the source type of the driver: official or community"
